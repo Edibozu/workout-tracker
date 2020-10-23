@@ -31,4 +31,21 @@ module.exports = function (app) {
         });
       });
   });
+
+  app.put("/api/workouts/:id", (req, res) => {
+    db.Workouts.findByIdUpdate(req.params.id, req.body, {
+      $push: { exercises: req.body },
+    })
+      .then((updatedWorkouts) => {
+        res.json(updatedWorkouts);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({
+          error: true,
+          data: null,
+          message: "Failed to update workout",
+        });
+      });
+  });
 };
