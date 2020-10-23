@@ -33,11 +33,15 @@ module.exports = function (app) {
   });
 
   app.put("/api/workouts/:id", (req, res) => {
-    db.Workouts.findByIdUpdate(req.params.id, req.body, {
-      $push: { exercises: req.body },
-    })
-      .then((updatedWorkouts) => {
-        res.json(updatedWorkouts);
+    db.Workout.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: { exercises: req.body },
+      },
+      { new: true }
+    )
+      .then((updatedWorkout) => {
+        res.json(updatedWorkout);
       })
       .catch((err) => {
         console.log(err);
