@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const app = express();
 
-
 const PORT = process.env.PORT || 3000;
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -33,7 +31,6 @@ connection.on("error", (err) => {
 
 require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
-
 
 app.get("/api/config", (req, res) => {
   res.json({

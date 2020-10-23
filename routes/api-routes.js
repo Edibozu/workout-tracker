@@ -2,7 +2,7 @@ const path = require("path");
 const db = require("../models");
 
 module.exports = function (app) {
-  router.get("/api/workouts", (req, res) => {
+  app.get("/api/workouts", (req, res) => {
     db.Workout.find({})
       .then((foundWorkouts) => {
         res.json(foundWorkouts);
@@ -17,7 +17,7 @@ module.exports = function (app) {
       });
   });
 
-  router.post("/api/workouts", (req, res) => {
+  app.post("/api/workouts", (req, res) => {
     db.Workout.create(req.body)
       .then((newWorkout) => {
         res.json(newWorkout);
