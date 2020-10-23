@@ -5,8 +5,6 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models");
-const workoutsController = require("./controllers/workoutsController");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -32,13 +30,14 @@ connection.on("error", (err) => {
   console.log("Mongoose connection error: ", err);
 });
 
+require("./routes/api-routes")(app);
+
+
 app.get("/api/config", (req, res) => {
   res.json({
     success: true,
   });
 });
-
-app.use(workoutsController);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
