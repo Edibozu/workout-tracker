@@ -31,6 +31,7 @@ connection.on("error", (err) => {
   console.log("Mongoose connection error: ", err);
 });
 
+require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
 
 
