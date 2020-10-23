@@ -1,3 +1,4 @@
+const { resolveSoa } = require("dns");
 const path = require("path");
 const db = require("../models");
 
@@ -28,6 +29,22 @@ module.exports = function (app) {
           error: true,
           data: null,
           message: "Failed to create new workout",
+        });
+      });
+  });
+
+  app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+      .limit(7)
+      .then((foundWorkoutRange) => {
+        res.json(foundWorkoutRange);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({
+          error: true,
+          data: null,
+          message: "Failed to retrieve workouts",
         });
       });
   });
