@@ -5,8 +5,8 @@ const db = require("../models");
 module.exports = function (app) {
   app.get("/api/workouts", (req, res) => {
     db.Workout.find({})
-      .then((foundWorkouts) => {
-        res.json(foundWorkouts);
+      .then((foundWorkout) => {
+        res.json(foundWorkout);
       })
       .catch((err) => {
         console.log(err);
